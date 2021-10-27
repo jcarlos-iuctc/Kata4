@@ -9,15 +9,35 @@ import view.MailListReader;
 
 public class Kata4 {
 
-    public static void main(String[] args) {
+    private final String filename = "u:\\Java\\Projects\\Kata4\\email.txt";
+    private List<Mail> mailList;
+    Histogram<String> histogram;
+    
+    public static void main(String[] args) {        
         
-        String filename = "u:\\Java\\Projects\\Kata4\\email.txt";
+        Kata4 kata4 = new Kata4();
+        kata4.execute();
+                                   
+    }
+    
+    private void execute() {
+        input();
+        process();
+        output();
+    }
+    
+    private void input() {
+        mailList = MailListReader.read(filename);    
         
-        List<Mail> mailList = MailListReader.read(filename);
-        Histogram<String> histogram = MailHistogramBuilder.build(mailList);
+    }
+    
+    private void process() {
+        histogram = MailHistogramBuilder.build(mailList);
+    }
+    
+    private void output() {
         HistogramDisplay histoDisplay = new HistogramDisplay(histogram, "My Histogram");
         histoDisplay.execute();
-       
     }
     
 }
